@@ -6,7 +6,7 @@
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 18:13:51 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/11/19 15:29:21 by jmoussu          ###   ########.fr       */
+/*   Updated: 2018/11/24 19:44:06 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static char	*ft_intmin(void)
 {
 	char	*str;
 
-	str = ft_strdup("-2147483648");
+	if (!(str = ft_strdup("-2147483648")))
+		return (NULL);
 	return (str);
 }
 

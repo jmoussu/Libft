@@ -6,7 +6,7 @@
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:21:38 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/11/19 15:33:06 by jmoussu          ###   ########.fr       */
+/*   Updated: 2018/11/24 21:09:12 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char		**ft_strsplit(const char *s, char c)
 	while (i != t)
 	{
 		if (((i == 0 && z[i] != 0) || \
-		(z[i] != c && z[i] != 0 && z[i - 1] == 0))\
+		(z[i] != 0 && z[i - 1] == 0))\
 		&& (!(tab[j++] = ft_strdup(z + i))))
 			return (NULL);
 		i++;
