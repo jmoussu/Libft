@@ -6,12 +6,16 @@
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 11:31:49 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/11/23 15:46:11 by jmoussu          ###   ########.fr       */
+/*   Updated: 2018/12/08 14:52:47 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+/*
+** include only string.h here use unistd and stdlib to .c
+*/
 
 # include <string.h>
 # include <unistd.h>
@@ -36,6 +40,7 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t				ft_strlen(const char *str);
 
 char				*ft_strdup(const char *src);
+char				*ft_strdupfree(char *src);
 
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
@@ -81,6 +86,7 @@ int					ft_strnequ(char const *s1, char const *s2, size_t n);
 
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_strjoinfree(char *s1, char *s2, int i);
 char				*ft_strtrim(char const *s);
 
 char				**ft_strsplit(const char *s, char c);

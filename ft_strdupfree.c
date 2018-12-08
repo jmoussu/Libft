@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strdupfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:24:08 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/11/25 17:38:10 by jmoussu          ###   ########.fr       */
+/*   Created: 2018/12/08 14:49:16 by jmoussu           #+#    #+#             */
+/*   Updated: 2018/12/08 14:51:47 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strdupfree(char *src)
 {
-	write(1, &c, 1);
+	int		i;
+	char	*dest;
+
+	if (!(dest = (char*)malloc(sizeof(char) * (ft_strlen(src) + 1))))
+		return (NULL);
+	i = 0;
+	while (src[i] != 0)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = 0;
+	free(src);
+	return (dest);
 }

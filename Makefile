@@ -6,7 +6,7 @@
 #    By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 11:30:35 by jmoussu           #+#    #+#              #
-#    Updated: 2018/11/23 15:48:20 by jmoussu          ###   ########.fr        #
+#    Updated: 2018/12/08 14:53:48 by jmoussu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC =	ft_putchar.c \
 		ft_strcmp.c \
 		ft_strncmp.c \
 		ft_strdup.c \
+		ft_strdupfree.c \
 		ft_strcpy.c \
 		ft_strncpy.c \
 		ft_memset.c \
@@ -56,6 +57,7 @@ SRC =	ft_putchar.c \
 		ft_strnequ.c \
 		ft_strsub.c \
 		ft_strjoin.c \
+		ft_strjoinfree.c \
 		ft_strtrim.c \
 		ft_strsplit.c \
 		ft_itoa.c \
@@ -80,22 +82,24 @@ SRC =	ft_putchar.c \
 OBJ = $(SRC:.c=.o)
 
 INC = .
-FLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -I$(INC)
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAGS) -c $(SRC) -I$(INC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
+	@echo done
+
+%.o : %.c
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	/bin/rm -f $(OBJ)
-	/bin/rm -f a.out
-	/bin/rm -rf a.out.dSYM
+	@rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -rf $(NAME) a.out a.out.dSYM
 
 re: fclean all
 # gccw -L. -lft ft_strcat.c
+
+.PHONY: all clean fclean re
