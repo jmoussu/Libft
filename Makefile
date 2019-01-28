@@ -6,7 +6,7 @@
 #    By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 11:30:35 by jmoussu           #+#    #+#              #
-#    Updated: 2018/12/08 14:53:48 by jmoussu          ###   ########.fr        #
+#    Updated: 2019/01/28 14:16:09 by jmoussu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,8 @@ SRC =	ft_putchar.c \
 		ft_displaytab.c \
 		ft_displayargv.c \
 		ft_strrealloc.c \
-		ft_sqrt.c
+		ft_sqrt.c \
+		ft_get_next_line.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -97,7 +98,7 @@ clean:
 	@rm -f $(OBJ)
 
 fclean: clean
-	@rm -rf $(NAME) a.out a.out.dSYM
+	@rm -rf $(NAME) a.out a.out.dSYM main.c
 
 re: fclean all
 # gccw -L. -lft ft_strcat.c

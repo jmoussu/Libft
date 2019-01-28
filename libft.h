@@ -6,7 +6,7 @@
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 11:31:49 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/12/08 14:52:47 by jmoussu          ###   ########.fr       */
+/*   Updated: 2019/01/28 14:22:20 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+# define BUFF_SIZE 4096
+
+/*
+** s_var is for GNL
+*/
+
+typedef struct		s_var
+{
+	char			buff[BUFF_SIZE + 1];
+	int				size;
+	int				i;
+	char			*ptr;
+}					t_var;
 
 typedef struct		s_list
 {
@@ -116,5 +130,7 @@ void				ft_displaytab(int nb, char **tab);
 void				ft_displayargv(int argc, char **argv);
 char				*ft_strrealloc(int len, char *str);
 int					ft_sqrt(int nb);
+
+int					get_next_line(const int fd, char **line);
 
 #endif
