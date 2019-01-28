@@ -6,11 +6,10 @@
 #    By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 11:30:35 by jmoussu           #+#    #+#              #
-#    Updated: 2019/01/28 14:16:09 by jmoussu          ###   ########.fr        #
+#    Updated: 2019/01/28 15:53:32 by jmoussu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
 
 SRC =	ft_putchar.c \
 		ft_putstr.c \
@@ -80,8 +79,9 @@ SRC =	ft_putchar.c \
 		ft_sqrt.c \
 		ft_get_next_line.c \
 
+NAME = libft.a
+GREEN_OK = "\033[0;32mDONE !\033[00m"
 OBJ = $(SRC:.c=.o)
-
 INC = .
 CFLAGS = -Wall -Werror -Wextra -I$(INC)
 
@@ -89,16 +89,18 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo done
+	@echo libft ${GREEN_OK}
 
 %.o : %.c
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	@rm -f $(OBJ)
+	@echo clean libft ${GREEN_OK}
 
 fclean: clean
 	@rm -rf $(NAME) a.out a.out.dSYM main.c
+	@echo fclean libft ${GREEN_OK}
 
 re: fclean all
 # gccw -L. -lft ft_strcat.c
