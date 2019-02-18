@@ -6,86 +6,77 @@
 /*   By: jmoussu <jmoussu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:21:38 by jmoussu           #+#    #+#             */
-/*   Updated: 2018/11/24 21:09:12 by jmoussu          ###   ########.fr       */
+/*   Updated: 2019/02/18 17:26:19 by jmoussu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_nb_mot(const char *str, char c)
+static int		ft_len(const char *str, char c)
 {
-	int i;
-	int co;
-
-	if (str == NULL)
-		return (0);
-	co = 0;
-	i = 0;
-	if (str[0] != c)
-		co++;
-	while (str[i] != 0)
-	{
-		while (str[i] == c)
-		{
-			i++;
-		}
-		if (str[i] != c && str[i] != 0 && str[i - 1] == c)
-			co++;
-		i++;
-	}
-	return (co);
-}
-
-static char	*c_to_zero(const char *strc, char c)
-{
-	int		u;
-	char	*str;
-
-	if (strc == NULL)
-		return (NULL);
-	str = ft_strdup((char *)strc);
-	if (str == NULL)
-		return (NULL);
-	u = 0;
-	while (str[u])
-		u++;
-	u--;
-	while (u != -1)
-	{
-		if (str[u] == c)
-		{
-			str[u] = 0;
-		}
-		u--;
-	}
-	return (str);
-}
-
-char		**ft_strsplit(const char *s, char c)
-{
-	char	**tab;
-	char	*z;
 	int		i;
 	int		j;
-	int		t;
+
+	i = 0;
+	j = 0;
+	while (str[i] == c)
+		i++;
+	while (str[i + j] != c && str[i + j] != '\0')
+		j++;
+	return (j);
+}
+
+static int		ft_countwords(const char *s, char c)
+{
+	int		i;
+	int		nb_words;
+
+	i = ft_strlen(s);
+	nb_words = 0;
+	while (i > 0)
+	{
+		if ((s[i] == c && s[i - 1] != c) || (s[i] == '\0' && s[i - 1] != c))
+			nb_words++;
+		i--;
+	}
+	return (nb_words);
+}
+
+static char		**ft_filltab(const char *str, char c, char **tab)
+{
+	int		a;
+	int		i;
+	int		j;
+
+	a = 0;
+	i = 0;
+	while (i < ft_countwords(str, c))
+	{
+		j = 0;
+		tab[i] = (char *)malloc(sizeof(char) * (ft_len(str + a, c) + 1));
+		while (str[a] == c && str[a] != '\0')
+			a++;
+		while (str[a] != c && str[a] != '\0')
+		{
+			tab[i][j] = str[a];
+			j++;
+			a++;
+		}
+		tab[i][j] = '\0';
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+char			**ft_strsplit(const char *s, char c)
+{
+	char	**tab;
 
 	if (s == NULL)
 		return (NULL);
-	i = 0;
-	j = 0;
-	t = ft_strlen(s);
-	z = c_to_zero((char *)s, c);
-	if (!(tab = (char**)malloc(sizeof(char*) * (get_nb_mot((char *)s, c) + 1))))
+	if (!(tab = (char **)malloc(sizeof(char *) * (ft_countwords(s, c) + 1))))
 		return (NULL);
-	while (i != t)
-	{
-		if (((i == 0 && z[i] != 0) || \
-		(z[i] != 0 && z[i - 1] == 0))\
-		&& (!(tab[j++] = ft_strdup(z + i))))
-			return (NULL);
-		i++;
-	}
-	tab[j] = 0;
-	free(z);
+	tab = ft_filltab(s, c, tab);
 	return (tab);
 }
